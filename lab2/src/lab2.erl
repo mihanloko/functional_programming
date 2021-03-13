@@ -2,7 +2,7 @@
 -author("mikhail").
 
 %% API
--export([main/0, sort/1]).
+-export([main/0, sort/1, write/1]).
 
 sort(List) ->
   {Status, SortedList} = do_sort(List),
@@ -19,15 +19,16 @@ do_sort([First, Second | Tail]) ->
   {Status, List} = do_sort([First | Tail]),
   {changed, [Second | List]}.
 
+write(L) ->
+  io:write(L),
+  io:nl(),
+  io:write(sort(L)),
+  io:nl().
+
 main() ->
-  io:write(sort([6, 4, 5, 1, 3, 8])),
-  io:nl(),
-  io:write(sort([1, 2, 3, 4, 5, 6])),
-  io:nl(),
-  io:write(sort([7, 6, 5, 4, 3, 2])),
-  io:nl(),
-  io:write(sort([])),
-  io:nl(),
-  io:write(sort([1])),
-  io:nl(),
-  io:write(sort([5, 5, 3, 3, 1, 1])).
+  write([6, 4, 5, 1, 3, 8]),
+  write([1, 2, 3, 4, 5, 6]),
+  write([7, 6, 5, 4, 3, 2]),
+  write([]),
+  write([1]),
+  write([5, 5, 3, 3, 1, 1]).
