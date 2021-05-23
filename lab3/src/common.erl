@@ -43,7 +43,7 @@ send(To, Message) -> nameOf(To) ! Message, sent.
 quoted(String) -> "'" ++ String ++ "'".
 
 % Returns all nodes available.
-nodes() -> ["core@192.168.223.1", "collector@192.168.223.1", "accumulator@192.168.223.130", "storage@192.168.223.130"].
+nodes() -> ["accumulator@127.0.0.1", "jNodeSend@127.0.0.1", "jNodeRecieve@127.0.0.1"].
 
 rand(Ceil) -> floor(rand:uniform() * Ceil).
 rand(From, To) -> floor(From + rand:uniform() * (To - From)).

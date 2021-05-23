@@ -10,7 +10,7 @@
 -author("mikhail").
 
 %% API
--export([main/0, core/0]).
+-export([main/0, core/0, run/0, init/0]).
 
 -import(common, [send/2, quoted/1, cookie/0, start/0, rand/1, rand/2]).
 
@@ -38,3 +38,9 @@ main() -> Core_PID = spawn(fun() ->
   core() end),
   global:register_name(name(), Core_PID),
   common:nop(self()).
+
+
+run() ->
+  register(core, spawn(?MODULE, init, [])).
+init() ->
+  core().
