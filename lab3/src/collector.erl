@@ -32,6 +32,7 @@ collector() ->
   end, collector().
 
 main() -> Collector_PID = spawn(fun() ->
+  erlang:set_cookie(node(), cookie()),
   common:start(),
   collector() end),
   global:register_name(name(), Collector_PID),

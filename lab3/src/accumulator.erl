@@ -33,6 +33,7 @@ accumulator(Data, Size) ->
 
 
 main() -> Accumulator_PID = spawn(fun() ->
+  erlang:set_cookie(node(), cookie()),
   common:start(),
   accumulator("", 0) end),
   global:register_name(name(), Accumulator_PID),

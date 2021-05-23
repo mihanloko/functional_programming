@@ -26,6 +26,7 @@ storage() ->
   end, storage().
 
 main() -> Storage_PID = spawn(fun() ->
+  erlang:set_cookie(node(), cookie()),
   common:start(),
   storage() end),
   global:register_name(name(), Storage_PID),

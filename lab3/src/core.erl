@@ -31,6 +31,7 @@ core([]) -> void.
 
 
 main() -> Core_PID = spawn(fun() ->
+  erlang:set_cookie(node(), cookie()),
   log:say("node ~p", [[node()]]),
   log:say("node ~p", [[common:nodes()]]),
   common:start(),
